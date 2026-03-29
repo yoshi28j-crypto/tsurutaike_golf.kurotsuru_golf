@@ -1,0 +1,74 @@
+/* access.css — アクセスページ固有スタイル */
+
+/* 住所・電話 */
+.info-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; background:rgba(26,123,196,0.08); border:1px solid rgba(26,123,196,0.3); border-radius:2px; padding:24px 28px; margin-bottom:32px; }
+@media(max-width:600px){ .info-grid{ grid-template-columns:1fr; } }
+.info-item { display:flex; align-items:flex-start; gap:14px; }
+.info-icon { font-size:1.3rem; margin-top:2px; flex-shrink:0; }
+.info-label { font-size:0.88rem; color:var(--blue-soft); letter-spacing:0.15em; font-weight:700; margin-bottom:8px; }
+.info-text { font-size:0.92rem; color:var(--off-white); line-height:1.7; }
+.info-tel-label {
+  display: block;
+  font-size: 0.72rem;
+  color: var(--blue-soft);
+  letter-spacing: 0.12em;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+.info-tel { font-size:1.5rem; font-family:'Barlow',sans-serif; font-weight:700; color:var(--white); text-decoration:none; letter-spacing:0.05em; }
+.info-tel:hover { color:var(--blue-soft); }
+
+/* マップタイトル */
+.map-section-title {
+  font-family: 'Noto Sans JP', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--blue-soft);
+  letter-spacing: 0.2em;
+  margin-bottom: 10px;
+  padding-left: 14px;
+  border-left: 3px solid var(--blue);
+}
+
+/* 地図 */
+.map-wrap { border:1px solid rgba(26,123,196,0.3); border-radius:2px; overflow:hidden; margin-bottom:32px; }
+.map-wrap iframe { display:block; }
+
+/* アクセスブロック */
+.access-block { background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.07); border-radius:2px; padding:24px 28px; margin-bottom:16px; }
+.access-block-title { font-size:0.95rem; font-weight:700; color:var(--white); letter-spacing:0.1em; margin-bottom:16px; display:flex; align-items:center; gap:10px; border-left:3px solid var(--blue); padding-left:12px; }
+.access-list { list-style:none; padding:0; }
+.access-list li { font-size:0.9rem; color:var(--grey-text); line-height:1.9; padding:10px 0; border-bottom:1px solid rgba(255,255,255,0.05); }
+.access-list li:last-child { border-bottom:none; }
+.access-list strong { color:var(--white); }
+.bus-stop { display:inline-block; background:rgba(26,123,196,0.2); border:1px solid rgba(26,123,196,0.4); color:var(--blue-soft); padding:2px 10px; font-size:0.82rem; border-radius:2px; }
+.parking-note { margin-top:14px; background:rgba(26,123,196,0.1); border-left:3px solid var(--blue); padding:10px 16px; font-size:0.88rem; color:var(--grey-text); display:flex; align-items:center; gap:10px; }
+.parking-badge { background:var(--blue); color:white; font-weight:900; font-size:0.9rem; width:26px; height:26px; display:inline-flex; align-items:center; justify-content:center; border-radius:2px; flex-shrink:0; }
+
+/* ============================================================
+   レスポンシブ — access固有
+   ============================================================ */
+
+/* タブレット（601〜1024px） */
+@media (min-width: 601px) and (max-width: 1024px) {
+  .info-grid { gap: 12px; }
+  .access-block { padding: 20px 22px; }
+}
+
+/* スマホ（〜600px） */
+@media (max-width: 600px) {
+  .info-grid { grid-template-columns: 1fr; gap: 12px; }
+  .info-tel { font-size: 1.2rem; }
+  .access-block { padding: 18px 16px; }
+  .access-list li { font-size: 0.85rem; line-height: 1.8; }
+  .map-wrap iframe,
+  .map-iframe { height: clamp(240px, 55vw, 340px); }
+  .map-section-title { font-size: 0.95rem; }
+  .parking-note { font-size: 0.82rem; }
+}
+
+/* 極小スマホ（〜360px） */
+@media (max-width: 360px) {
+  .info-tel { font-size: 1.1rem; }
+  .access-block-title { font-size: 0.88rem; }
+}

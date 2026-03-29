@@ -1,0 +1,100 @@
+/* game.css — ミニゲームページ固有スタイル */
+
+/* ゲームページのbody設定（フレックス中央揃え） */
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100dvh;
+  overflow-x: hidden;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+  
+  
+
+  /* HEADER */
+  
+  
+  
+  
+  
+
+  /* GAME AREA */
+  .game-wrapper { width:100%; max-width:680px; padding:12px 12px 16px; display:flex; flex-direction:column; align-items:center; gap:10px; flex:1; }
+
+  /* HOLE INFO */
+  .hole-info { width:100%; display:flex; align-items:center; justify-content:space-between; }
+  .hole-name { font-family:'Barlow',sans-serif; font-size:0.7rem; letter-spacing:0.25em; color:var(--blue-soft); }
+  .par-badge { background:rgba(26,123,196,0.15); border:1px solid rgba(26,123,196,0.4); padding:3px 12px; font-family:'Barlow',sans-serif; font-size:0.65rem; letter-spacing:0.18em; color:var(--blue-soft); }
+
+  /* SCORE BAR */
+  .score-bar { width:100%; display:grid; grid-template-columns:repeat(4,1fr); gap:6px; }
+  .score-card { background:var(--black-card); border:1px solid rgba(26,123,196,0.3); padding:8px 6px 6px; text-align:center; position:relative; overflow:hidden; }
+  .score-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(to right,var(--blue),var(--blue-bright)); }
+  .score-card .label { font-family:'Barlow',sans-serif; font-size:0.55rem; letter-spacing:0.25em; color:var(--blue-soft); display:block; margin-bottom:2px; }
+  .score-card .value { font-family:'Barlow',sans-serif; font-size:1.5rem; font-weight:700; color:var(--white); line-height:1.1; }
+  .score-card .sub { font-size:0.58rem; color:var(--grey); display:block; }
+
+  /* CANVAS */
+  .canvas-wrap { width:100%; position:relative; border:1px solid rgba(26,123,196,0.25); box-shadow:0 0 30px rgba(26,123,196,0.1),0 0 60px rgba(0,0,0,0.8); overflow:hidden; flex-shrink:0; }
+  canvas { display:block; width:100%; height:auto; cursor:crosshair; touch-action:none; user-select:none; -webkit-user-select:none; }
+
+  /* POWER BAR */
+  .power-section { width:100%; display:flex; align-items:center; gap:10px; }
+  .power-label { font-family:'Barlow',sans-serif; font-size:0.6rem; letter-spacing:0.25em; color:var(--blue-soft); white-space:nowrap; min-width:46px; }
+  .power-track { flex:1; height:10px; background:rgba(255,255,255,0.07); border:1px solid rgba(26,123,196,0.2); overflow:hidden; }
+  .power-fill { height:100%; width:0%; background:linear-gradient(to right,var(--blue),var(--blue-bright),var(--blue-soft)); transition:width 0.04s linear; box-shadow:0 0 8px var(--blue-glow); }
+  .power-num { font-family:'Barlow',sans-serif; font-size:0.9rem; font-weight:600; color:var(--white); min-width:38px; text-align:right; }
+
+  /* MESSAGE */
+  .message-box { width:100%; background:var(--black-card); border:1px solid rgba(26,123,196,0.2); padding:10px 14px; text-align:center; min-height:44px; display:flex; align-items:center; justify-content:center; }
+  .msg-text { font-size:0.82rem; line-height:1.5; color:var(--off-white); }
+  .msg-em { color:var(--blue-soft); font-weight:700; }
+
+  /* BUTTONS */
+  .btn-row { display:flex; gap:10px; flex-wrap:wrap; justify-content:center; width:100%; }
+  .btn { font-family:'Barlow',sans-serif; font-size:0.75rem; font-weight:600; letter-spacing:0.15em; border:1px solid var(--blue); background:transparent; color:var(--off-white); padding:12px 20px; cursor:pointer; transition:all 0.2s; outline:none; flex:1; min-width:120px; max-width:200px; min-height:44px; }
+  .btn:active { background:rgba(26,123,196,0.4); }
+  .btn.primary { background:var(--blue); color:var(--white); }
+  .btn.primary:active { background:var(--blue-bright); }
+
+  /* INSTRUCTION */
+  .instruction { width:100%; padding:10px 14px; background:rgba(26,123,196,0.05); border:1px solid rgba(26,123,196,0.1); font-size:0.72rem; color:var(--grey); text-align:center; line-height:1.7; }
+  .instruction span { color:var(--blue-soft); }
+
+  /* RESULT OVERLAY */
+  .overlay { position:fixed; inset:0; background:rgba(0,0,0,0.9); display:flex; align-items:center; justify-content:center; z-index:100; opacity:0; pointer-events:none; transition:opacity 0.4s; padding:16px; }
+  .overlay.show { opacity:1; pointer-events:all; }
+  .result-card { background:var(--black-card); border:1px solid rgba(26,123,196,0.5); padding:28px 24px; text-align:center; max-width:400px; width:100%; box-shadow:0 0 50px rgba(26,123,196,0.2); position:relative; overflow:hidden; max-height:90dvh; overflow-y:auto; }
+  .result-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(to right,transparent,var(--blue),var(--blue-bright),var(--blue),transparent); }
+  .result-crane { font-size:2.5rem; margin-bottom:12px; }
+  .result-title { font-family:'Barlow',sans-serif; font-size:0.6rem; letter-spacing:0.35em; color:var(--blue-soft); margin-bottom:6px; }
+  .result-score { font-family:'Barlow',sans-serif; font-size:3rem; font-weight:900; color:var(--white); line-height:1; margin-bottom:4px; }
+  .result-rank { font-size:1rem; font-weight:700; margin-bottom:12px; }
+  .result-comment { font-size:0.8rem; color:var(--grey); margin-bottom:8px; line-height:1.7; }
+  .result-cta { margin-top:16px; padding:14px 16px; background:rgba(26,123,196,0.1); border:1px solid rgba(26,123,196,0.3); font-size:0.78rem; color:var(--blue-soft); line-height:1.8; }
+  .result-cta strong { color:var(--white); }
+
+  /* TOAST */
+  .toast { position:fixed; top:45%; left:50%; transform:translate(-50%,-50%) scale(0.8); background:var(--black-card); border:1px solid rgba(26,123,196,0.5); padding:14px 28px; font-family:'Barlow',sans-serif; font-weight:700; font-size:1.3rem; letter-spacing:0.08em; color:var(--white); text-align:center; z-index:90; opacity:0; pointer-events:none; transition:all 0.3s cubic-bezier(0.34,1.56,0.64,1); white-space:nowrap; }
+  .toast.show { opacity:1; transform:translate(-50%,-50%) scale(1); }
+
+/* ページヒーローのゲーム用調整 */
+.page-hero {
+  padding: 32px 20px 28px;
+}
+.page-hero h1 {
+  font-size: clamp(1.4rem, 3vw, 2.2rem);
+}
+
+/* game-wrapper をフルwidth活用 */
+.game-wrapper {
+  width: 100%;
+}
+
+/* レスポンシブ */
+@media (max-width: 600px) {
+  .result-card { padding: 20px 16px; }
+  .btn { padding: 10px 14px; font-size: 0.72rem; }
+}

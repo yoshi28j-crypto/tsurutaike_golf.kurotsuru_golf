@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<title>ミニゲーム | 鶴田池ゴルフセンター</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@200;300;400;700;900&family=Barlow:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/common.css">
+<link rel="stylesheet" href="css/game.css">
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <div class="header-block">
+      <img class="crane-logo" src="images/logo.gif" alt="鶴田池ゴルフセンター ロゴ">
+      <div class="header-logo-text">
+        <div class="header-name-row">
+          <a href="index.html#notice-section" class="header-name-link"><span class="ja">鶴田池ゴルフセンター</span></a>
+          <span class="status-badge status-closed">現在休業中</span>
+        </div>
+        <span class="en">TSURUTAIKE GOLF CENTER</span>
+      </div>
+    </div>
+    <div class="header-divider"></div>
+    <div class="header-block">
+      <img class="kurotsu-header-logo" src="images/kurotsu_illust.png" alt="ガレージゴルフ黒鶴 イラスト">
+      <div class="header-kurotsu-text">
+        <div class="header-name-row">
+          <a href="index.html#kurotsu-section" class="header-name-link"><span class="ja">ガレージゴルフ黒鶴</span></a>
+          <span class="status-badge status-open">営業中</span>
+        </div>
+        <span class="en">GARAGE GOLF KUROTSURU</span>
+      </div>
+    </div>
+  </div>
+  <button class="ham-btn" id="hamBtn" aria-label="メニューを開く"><span></span><span></span><span></span></button>
+</header>
+<!-- DRAWER (ハンバーガーメニュー) -->
+<div class="drawer-overlay" id="drawerOverlay" onclick="closeDrawer()"></div>
+<div class="drawer" id="drawer">
+  <div class="drawer-head">
+    <span class="drawer-head-label">MENU</span>
+    <button class="drawer-close-btn" onclick="closeDrawer()" aria-label="メニューを閉じる">✕</button>
+  </div>
+  <nav class="drawer-nav">
+      <a href="index.html">HOME</a>
+      <a href="facility.html">施　設</a>
+      <a class="drawer-disabled"><span class="nav-coming">準備中</span>営業時間・料金</a>
+      <a class="drawer-disabled"><span class="nav-coming">準備中</span>スクール</a>
+      <a href="access.html">アクセス</a>
+      <a href="game.html" class="drawer-active">ミニゲーム</a>
+  </nav>
+</div>
+
+<!-- NAV -->
+<nav>
+  <ul>
+    <li><a href="index.html">HOME</a></li>
+    <li><a href="facility.html">施　設</a></li>
+    <li><a class="disabled" aria-disabled="true" tabindex="-1"><span class="nav-coming">準備中</span>営業時間・料金</a></li>
+    <li><a class="disabled" aria-disabled="true" tabindex="-1"><span class="nav-coming">準備中</span>スクール</a></li>
+    <li><a href="access.html">アクセス</a></li>
+    <li><a href="game.html" class="active">ミニゲーム</a></li>
+  </ul>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <span class="page-hero-label">MINI GAME</span>
+  <h1>ゴルフ ミニゲーム</h1>
+</div>
+
+<!-- GAME CONTENT -->
+<div class="game-wrapper">
+  <div class="hole-info">
+    <span class="hole-name" id="hole-name">HOLE 1 / 5</span>
+    <span class="par-badge" id="par-badge">PAR 3</span>
+  </div>
+
+  <div class="score-bar">
+    <div class="score-card"><span class="label">SHOTS</span><span class="value" id="shots-display">0</span><span class="sub">このホール</span></div>
+    <div class="score-card"><span class="label">TOTAL</span><span class="value" id="total-display">0</span><span class="sub">累計</span></div>
+    <div class="score-card"><span class="label">SCORE</span><span class="value" id="score-display">E</span><span class="sub">vs PAR</span></div>
+    <div class="score-card"><span class="label">BEST</span><span class="value" id="best-display">--</span><span class="sub">記録</span></div>
+  </div>
+
+  <div class="canvas-wrap">
+    <canvas id="gameCanvas"></canvas>
+  </div>
+
+  <div class="power-section">
+    <span class="power-label">POWER</span>
+    <div class="power-track"><div class="power-fill" id="power-fill"></div></div>
+    <span class="power-num" id="power-num">0%</span>
+  </div>
+
+  <div class="message-box">
+    <span class="msg-text" id="msg-text">⛳ ボールをドラッグして方向と力を決めよう！</span>
+  </div>
+
+  <div class="btn-row">
+    <button class="btn" onclick="resetHole()">リセット</button>
+    <button class="btn primary" id="btn-next" onclick="nextHole()" style="display:none">次のホール →</button>
+    <button class="btn" id="btn-restart" onclick="restartGame()" style="display:none">最初から</button>
+  </div>
+
+  <div class="instruction">
+    <span>操作：</span>ボールを長押し＆ドラッグ → 離すとショット！<br>
+    <span>目標：</span>少ない打数で旗（カップ）に入れよう。全5ホール制。
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<div class="overlay" id="result-overlay">
+  <div class="result-card">
+    <div class="result-crane">🦢</div>
+    <div class="result-title">GAME RESULT</div>
+    <div class="result-score" id="res-score">18</div>
+    <div class="result-rank" id="res-rank">🏆 エクセレント！</div>
+    <div class="result-comment" id="res-comment">素晴らしいスコアです！</div>
+    <div class="result-cta">
+      ゲームのあとは黒鶴へ！<br>
+      <strong>ガレージゴルフ黒鶴</strong><br>
+      平日・土日祝 <strong>50分 ¥500</strong>（税込）打ち放題<br>
+      営業 9:00〜21:00 ／ <strong>072-273-6600</strong>
+    </div>
+    <button class="btn primary" onclick="restartGame()" style="margin-top:16px;width:100%;max-width:100%">もう一度プレイ</button>
+  </div>
+</div>
+
+<script>
+// ───────────────────────────────────────────
+//  キャンバス設定（内部解像度固定・CSS で伸縮）
+// ───────────────────────────────────────────
+const NW=660, NH=360;   // 内部解像度
+const canvas=document.getElementById('gameCanvas');
+const ctx=canvas.getContext('2d');
+canvas.width=NW; canvas.height=NH;
+
+// ───────────────────────────────────────────
+//  ホールデータ
+// ───────────────────────────────────────────
+const holes=[
+  { par:3, ball:{x:80,y:180}, cup:{x:560,y:180},
+    walls:[{x:200,y:100,w:20,h:160},{x:400,y:100,w:20,h:160}],
+    bunkers:[{x:300,y:240,r:30}], name:"HOLE 1 — STRAIGHT" },
+  { par:3, ball:{x:80,y:280}, cup:{x:560,y:80},
+    walls:[{x:180,y:155,w:200,h:20},{x:380,y:155,w:20,h:125}],
+    bunkers:[{x:460,y:240,r:28}], name:"HOLE 2 — DOGLEG" },
+  { par:5, ball:{x:60,y:180}, cup:{x:600,y:180},
+    walls:[{x:140,y:80,w:20,h:100},{x:140,y:220,w:20,h:100},{x:260,y:100,w:160,h:20},{x:260,y:240,w:160,h:20},{x:420,y:80,w:20,h:260},{x:500,y:100,w:20,h:80},{x:500,y:200,w:20,h:80}],
+    bunkers:[{x:370,y:180,r:24}], name:"HOLE 3 — FINALE" },
+];
+
+// ───────────────────────────────────────────
+//  状態変数
+// ───────────────────────────────────────────
+let holeIndex=0, ballX, ballY, ballVX=0, ballVY=0;
+let shots=0, totalShots=0, scoreVsPar=0;
+let inHole=false, ballMoving=false;
+let dragStart=null, dragCurrent=null, powerPct=0;
+let bestScore=(()=>{ try{return localStorage.getItem('tsurutaike_best');}catch(e){return null;} })();
+
+const BALL_R=9, CUP_R=14, BORDER=12;
+const FRICTION=0.97, WALL_BOUNCE=0.55, SPEED_STOP=0.15;
+const MAX_POWER=18, DRAG_SCALE=0.17;
+
+// スマホではボール当たり判定を大きくする
+function hitRadius() { return window.innerWidth<=520 ? BALL_R*6 : BALL_R*4; }
+
+// ───────────────────────────────────────────
+//  初期化 & ゲーム制御
+// ───────────────────────────────────────────
+function initHole() {
+  const h=holes[holeIndex];
+  ballX=h.ball.x; ballY=h.ball.y;
+  ballVX=0; ballVY=0; shots=0; inHole=false; ballMoving=false;
+  dragStart=null; dragCurrent=null; powerPct=0;
+  document.getElementById('btn-next').style.display='none';
+  document.getElementById('btn-restart').style.display='none';
+  document.getElementById('hole-name').textContent=`HOLE ${holeIndex+1} / 3`;
+  document.getElementById('par-badge').textContent=`PAR ${h.par}`;
+  setMsg(`⛳ ${h.name} ／ PAR ${h.par}`);
+  updateUI(); draw();
+}
+function restartGame() {
+  holeIndex=0; totalShots=0; scoreVsPar=0;
+  document.getElementById('result-overlay').classList.remove('show');
+  initHole();
+}
+function nextHole() {
+  holeIndex++;
+  if (holeIndex>=holes.length) showResult(); else initHole();
+}
+function resetHole() {
+  totalShots-=shots;
+  scoreVsPar-=(shots-holes[holeIndex].par);
+  initHole();
+}
+
+// ───────────────────────────────────────────
+//  UI
+// ───────────────────────────────────────────
+function setMsg(t){ document.getElementById('msg-text').innerHTML=t; }
+function updateUI(){
+  document.getElementById('shots-display').textContent=shots;
+  document.getElementById('total-display').textContent=totalShots;
+  const el=document.getElementById('score-display');
+  if(scoreVsPar===0){el.textContent='E';el.style.color='#e8eef2';}
+  else if(scoreVsPar<0){el.textContent=scoreVsPar;el.style.color='#3ecf6a';}
+  else{el.textContent='+'+scoreVsPar;el.style.color='#e06060';}
+  document.getElementById('best-display').textContent=bestScore!==null?bestScore:'--';
+  document.getElementById('power-fill').style.width=powerPct+'%';
+  document.getElementById('power-num').textContent=Math.round(powerPct)+'%';
+}
+
+// ───────────────────────────────────────────
+//  リザルト
+// ───────────────────────────────────────────
+function showResult(){
+  const fin=totalShots;
+  try{if(bestScore===null||fin<parseInt(bestScore)){bestScore=fin;localStorage.setItem('tsurutaike_best',fin);}}catch(e){}
+  document.getElementById('res-score').textContent=fin;
+  const d=scoreVsPar;
+  let rank,comment;
+  if(d<=-5){rank='🏆 伝説のゴルファー！';comment='驚異的なスコア！ぜひ本物のコースへ！';}
+  else if(d<=-2){rank='⭐ プロ級プレイ！';comment='素晴らしい！練習でさらに上達できる！';}
+  else if(d===0){rank='👏 ナイスプレー！';comment='パープレイ達成！センスありますよ！';}
+  else if(d<=3){rank='🌱 ナイスチャレンジ！';comment='いい感じ！実際の打ちっぱなしで磨こう！';}
+  else{rank='⛳ まずは練習から！';comment='大丈夫！打ちっぱなしに行けばすぐ上達！';}
+  document.getElementById('res-rank').textContent=rank;
+  document.getElementById('res-comment').textContent=comment;
+  document.getElementById('res-score').style.color=d<0?'#3ecf6a':d===0?'#ffffff':'#e06060';
+  document.getElementById('result-overlay').classList.add('show');
+  updateUI();
+}
+
+function showToast(text,color){
+  const t=document.getElementById('toast');
+  t.textContent=text; t.style.color=color||'#fff';
+  t.style.borderColor=color||'rgba(26,123,196,0.5)';
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),1300);
+}
+
+// ───────────────────────────────────────────
+//  座標変換（CSS → Canvas 内部座標）
+// ───────────────────────────────────────────
+function getPos(e){
+  const r=canvas.getBoundingClientRect();
+  const sx=NW/r.width, sy=NH/r.height;
+  let cx,cy;
+  if(e.changedTouches&&e.changedTouches.length>0){cx=e.changedTouches[0].clientX;cy=e.changedTouches[0].clientY;}
+  else if(e.touches&&e.touches.length>0){cx=e.touches[0].clientX;cy=e.touches[0].clientY;}
+  else{cx=e.clientX;cy=e.clientY;}
+  return{x:(cx-r.left)*sx,y:(cy-r.top)*sy};
+}
+function dst(ax,ay,bx,by){return(ax-bx)**2+(ay-by)**2;}
+
+// ───────────────────────────────────────────
+//  入力
+// ───────────────────────────────────────────
+canvas.addEventListener('mousedown',  onDown, {passive:false});
+canvas.addEventListener('mousemove',  onMove, {passive:false});
+canvas.addEventListener('mouseup',    onUp,   {passive:false});
+canvas.addEventListener('touchstart', onDown, {passive:false});
+canvas.addEventListener('touchmove',  onMove, {passive:false});
+canvas.addEventListener('touchend',   onUp,   {passive:false});
+canvas.addEventListener('touchcancel',()=>{dragStart=null;dragCurrent=null;powerPct=0;updateUI();draw();},{passive:true});
+
+function onDown(e){
+  e.preventDefault();
+  if(ballMoving||inHole)return;
+  const p=getPos(e);
+  if(dst(p.x,p.y,ballX,ballY)<hitRadius()**2){
+    dragStart={x:p.x,y:p.y}; dragCurrent={x:p.x,y:p.y};
+  }
+}
+function onMove(e){
+  e.preventDefault();
+  if(!dragStart)return;
+  const p=getPos(e);
+  dragCurrent={x:p.x,y:p.y};
+  const dx=dragStart.x-p.x, dy=dragStart.y-p.y;
+  powerPct=Math.min(100,Math.sqrt(dx*dx+dy*dy)*0.65);
+  updateUI(); draw();
+}
+function onUp(e){
+  e.preventDefault();
+  if(!dragStart||ballMoving||inHole)return;
+  const dx=dragStart.x-dragCurrent.x, dy=dragStart.y-dragCurrent.y;
+  const dist=Math.sqrt(dx*dx+dy*dy);
+  if(dist<6){dragStart=null;dragCurrent=null;powerPct=0;updateUI();draw();return;}
+  const power=Math.min(dist*DRAG_SCALE,MAX_POWER);
+  const angle=Math.atan2(dy,dx);
+  ballVX=Math.cos(angle)*power; ballVY=Math.sin(angle)*power;
+  shots++; totalShots++;
+  dragStart=null; dragCurrent=null; powerPct=0;
+  setMsg('💨 ボール飛翔中...');
+  updateUI(); ballMoving=true;
+  requestAnimationFrame(gameLoop);
+}
+
+// ───────────────────────────────────────────
+//  物理
+// ───────────────────────────────────────────
+function gameLoop(){if(!ballMoving)return;update();draw();requestAnimationFrame(gameLoop);}
+
+function update(){
+  const h=holes[holeIndex];
+  ballX+=ballVX; ballY+=ballVY;
+  ballVX*=FRICTION; ballVY*=FRICTION;
+
+  if(ballX-BALL_R<BORDER){ballX=BORDER+BALL_R;ballVX=Math.abs(ballVX)*WALL_BOUNCE;}
+  if(ballX+BALL_R>NW-BORDER){ballX=NW-BORDER-BALL_R;ballVX=-Math.abs(ballVX)*WALL_BOUNCE;}
+  if(ballY-BALL_R<BORDER){ballY=BORDER+BALL_R;ballVY=Math.abs(ballVY)*WALL_BOUNCE;}
+  if(ballY+BALL_R>NH-BORDER){ballY=NH-BORDER-BALL_R;ballVY=-Math.abs(ballVY)*WALL_BOUNCE;}
+
+  for(const w of h.walls){
+    if(ballX+BALL_R>w.x&&ballX-BALL_R<w.x+w.w&&ballY+BALL_R>w.y&&ballY-BALL_R<w.y+w.h){
+      const oL=ballX+BALL_R-w.x,oR=w.x+w.w-(ballX-BALL_R),oT=ballY+BALL_R-w.y,oB=w.y+w.h-(ballY-BALL_R);
+      const m=Math.min(oL,oR,oT,oB);
+      if(m===oL){ballX=w.x-BALL_R;ballVX=-Math.abs(ballVX)*WALL_BOUNCE;}
+      else if(m===oR){ballX=w.x+w.w+BALL_R;ballVX=Math.abs(ballVX)*WALL_BOUNCE;}
+      else if(m===oT){ballY=w.y-BALL_R;ballVY=-Math.abs(ballVY)*WALL_BOUNCE;}
+      else{ballY=w.y+w.h+BALL_R;ballVY=Math.abs(ballVY)*WALL_BOUNCE;}
+    }
+  }
+  for(const b of h.bunkers){if(dst(ballX,ballY,b.x,b.y)<b.r**2){ballVX*=0.88;ballVY*=0.88;}}
+
+  if(dst(ballX,ballY,h.cup.x,h.cup.y)<CUP_R**2){
+    ballMoving=false; inHole=true;
+    const par=h.par, diff=shots-par;
+    scoreVsPar+=diff;
+    let msg,tc;
+    if(shots===1){msg='🦢 ホールインワン！！';tc='#ffd700';}
+    else if(diff<=-2){msg='🦅 イーグル！';tc='#3ecf6a';}
+    else if(diff===-1){msg='🐦 バーディー！';tc='#3ecf6a';}
+    else if(diff===0){msg='👏 パー！';tc='#5ab8f0';}
+    else if(diff===1){msg='😅 ボギー';tc='#e8c040';}
+    else if(diff===2){msg='😓 ダブルボギー';tc='#e08040';}
+    else{msg='💦 '+shots+'打';tc='#e06060';}
+    showToast(msg,tc);
+    setMsg(`${msg} &nbsp;| このホール <span class="msg-em">${shots}打</span>（PAR ${par}）`);
+    updateUI();
+    if(holeIndex<holes.length-1){document.getElementById('btn-next').style.display='inline-block';}
+    else{setTimeout(showResult,1300);}
+    return;
+  }
+
+  if(Math.sqrt(ballVX**2+ballVY**2)<SPEED_STOP){
+    ballVX=0;ballVY=0;ballMoving=false;
+    setMsg(`⛳ <span class="msg-em">${shots}打目</span>完了。次を狙おう！`);
+    updateUI();
+  }
+}
+
+// ───────────────────────────────────────────
+//  描画
+// ───────────────────────────────────────────
+function draw(){
+  const h=holes[holeIndex];
+  ctx.clearRect(0,0,NW,NH);
+
+  const fg=ctx.createLinearGradient(0,0,0,NH);
+  fg.addColorStop(0,'#162a1a');fg.addColorStop(0.5,'#1a3320');fg.addColorStop(1,'#142416');
+  ctx.fillStyle=fg; ctx.fillRect(0,0,NW,NH);
+
+  ctx.fillStyle='rgba(255,255,255,0.015)';
+  for(let i=0;i<180;i++)ctx.fillRect((i*137)%NW,(i*97)%NH,1,1);
+
+  ctx.strokeStyle='#1a7bc4'; ctx.lineWidth=2;
+  ctx.strokeRect(BORDER,BORDER,NW-BORDER*2,NH-BORDER*2);
+  ctx.strokeStyle='rgba(26,123,196,0.18)'; ctx.lineWidth=1;
+  ctx.strokeRect(BORDER+4,BORDER+4,NW-BORDER*2-8,NH-BORDER*2-8);
+
+  for(const b of h.bunkers){
+    const bg=ctx.createRadialGradient(b.x,b.y,0,b.x,b.y,b.r);
+    bg.addColorStop(0,'#c8a96e');bg.addColorStop(1,'#8a6a30');
+    ctx.beginPath();ctx.arc(b.x,b.y,b.r,0,Math.PI*2);
+    ctx.fillStyle=bg;ctx.fill();
+    ctx.strokeStyle='#a07830';ctx.lineWidth=1;ctx.stroke();
+    ctx.fillStyle='rgba(0,0,0,0.2)';ctx.font='bold 9px Barlow';
+    ctx.textAlign='center';ctx.fillText('BUNKER',b.x,b.y+4);
+  }
+
+  for(const w of h.walls){
+    const wg=ctx.createLinearGradient(w.x,w.y,w.x+w.w,w.y+w.h);
+    wg.addColorStop(0,'#2a2a2a');wg.addColorStop(1,'#1a1a1a');
+    ctx.fillStyle=wg;ctx.fillRect(w.x,w.y,w.w,w.h);
+    ctx.strokeStyle='#1a7bc4';ctx.lineWidth=1.5;ctx.strokeRect(w.x,w.y,w.w,w.h);
+  }
+
+  const cx=h.cup.x,cy=h.cup.y;
+  ctx.beginPath();ctx.arc(cx,cy,CUP_R+4,0,Math.PI*2);ctx.fillStyle='rgba(0,0,0,0.4)';ctx.fill();
+  ctx.beginPath();ctx.arc(cx,cy,CUP_R,0,Math.PI*2);ctx.fillStyle='#0a0a0a';ctx.fill();
+  ctx.strokeStyle='#1a7bc4';ctx.lineWidth=2;ctx.stroke();
+  ctx.strokeStyle='#aaa';ctx.lineWidth=1.5;
+  ctx.beginPath();ctx.moveTo(cx,cy-2);ctx.lineTo(cx,cy-28);ctx.stroke();
+  ctx.fillStyle='#e02020';
+  ctx.beginPath();ctx.moveTo(cx,cy-28);ctx.lineTo(cx+14,cy-22);ctx.lineTo(cx,cy-16);ctx.closePath();ctx.fill();
+  const cpg=ctx.createRadialGradient(cx,cy,CUP_R,cx,cy,CUP_R+20);
+  cpg.addColorStop(0,'rgba(26,123,196,0.18)');cpg.addColorStop(1,'transparent');
+  ctx.beginPath();ctx.arc(cx,cy,CUP_R+20,0,Math.PI*2);ctx.fillStyle=cpg;ctx.fill();
+
+  if(dragStart&&dragCurrent&&!ballMoving){
+    const dx=dragStart.x-dragCurrent.x,dy=dragStart.y-dragCurrent.y;
+    const dist=Math.sqrt(dx*dx+dy*dy);
+    if(dist>5){
+      const angle=Math.atan2(dy,dx);
+      ctx.save();ctx.setLineDash([5,8]);
+      ctx.strokeStyle='rgba(90,184,240,0.5)';ctx.lineWidth=1.5;
+      ctx.beginPath();ctx.moveTo(ballX,ballY);
+      const gl=Math.min(dist*1.1,130);
+      ctx.lineTo(ballX+Math.cos(angle)*gl,ballY+Math.sin(angle)*gl);
+      ctx.stroke();ctx.restore();
+      const tx=ballX+Math.cos(angle)*gl,ty=ballY+Math.sin(angle)*gl;
+      ctx.save();ctx.translate(tx,ty);ctx.rotate(angle);
+      ctx.fillStyle='rgba(90,184,240,0.85)';
+      ctx.beginPath();ctx.moveTo(8,0);ctx.lineTo(-4,5);ctx.lineTo(-4,-5);ctx.closePath();ctx.fill();
+      ctx.restore();
+    }
+  }
+
+  if(!inHole){
+    ctx.beginPath();ctx.arc(ballX+3,ballY+3,BALL_R,0,Math.PI*2);ctx.fillStyle='rgba(0,0,0,0.35)';ctx.fill();
+    const bg=ctx.createRadialGradient(ballX-3,ballY-3,1,ballX,ballY,BALL_R);
+    bg.addColorStop(0,'#ffffff');bg.addColorStop(0.7,'#d8e8f0');bg.addColorStop(1,'#a0b8c8');
+    ctx.beginPath();ctx.arc(ballX,ballY,BALL_R,0,Math.PI*2);ctx.fillStyle=bg;ctx.fill();
+    ctx.beginPath();ctx.arc(ballX-3,ballY-3,3,0,Math.PI*2);ctx.fillStyle='rgba(255,255,255,0.7)';ctx.fill();
+    if(ballMoving){
+      const gl=ctx.createRadialGradient(ballX,ballY,BALL_R,ballX,ballY,BALL_R+10);
+      gl.addColorStop(0,'rgba(90,184,240,0.3)');gl.addColorStop(1,'transparent');
+      ctx.beginPath();ctx.arc(ballX,ballY,BALL_R+10,0,Math.PI*2);ctx.fillStyle=gl;ctx.fill();
+    }
+  }
+
+  ctx.font='600 11px Barlow';ctx.fillStyle='rgba(90,184,240,0.75)';
+  ctx.textAlign='left';ctx.fillText('SHOTS: '+shots,BORDER+8,BORDER+18);
+  ctx.textAlign='right';ctx.fillText('PAR '+h.par,NW-BORDER-8,BORDER+18);
+}
+
+initHole();
+</script>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo-area">
+    <a href="index.html#notice-section" class="footer-logo-link">
+      <img src="images/logo.gif" alt="鶴田池ゴルフセンター ロゴ" style="width:36px;height:36px;object-fit:contain;">
+      <div class="footer-logo-text">
+        <div class="ja">鶴田池ゴルフセンター</div>
+        <div class="en">TSURUTAIKE GOLF CENTER</div>
+      </div>
+    </a>
+    <div class="footer-logo-divider"></div>
+    <a href="index.html#kurotsu-section" class="footer-logo-link">
+      <img src="images/kurotsu_illust.png" alt="ガレージゴルフ黒鶴" style="height:36px;width:auto;object-fit:contain;">
+      <div class="footer-logo-text">
+        <div class="ja">ガレージゴルフ黒鶴</div>
+        <div class="en">GARAGE GOLF KUROTSURU</div>
+      </div>
+    </a>
+  </div>
+  <div style="margin-bottom:20px;">
+    <div class="footer-links">
+      <a href="index.html">HOME</a>
+      <a href="facility.html">施　設</a>
+      <a class="disabled" aria-disabled="true" tabindex="-1"><span class="nav-coming">準備中</span>営業時間・料金</a>
+      <a class="disabled" aria-disabled="true" tabindex="-1"><span class="nav-coming">準備中</span>スクール</a>
+      <a href="access.html">アクセス</a>
+      <a href="game.html">ミニゲーム</a>
+    </div>
+  </div>
+  <address>〒593-8312 堺市西区草部1630　鶴田池ゴルフセンター<br>電話（鶴田池）：072-273-6600　／　電話（ガレージゴルフ黒鶴）：072-288-7511</address>
+  <p class="copy">Copyright © TSURUTAIKE GOLF CENTER All Rights Reserved.</p>
+</footer>
+
+<script>
+
+// ───────────────────────────────────────────
+//  キャンバス設定（内部解像度固定・CSS で伸縮）
+// ───────────────────────────────────────────
+const NW=660, NH=360;   // 内部解像度
+const canvas=document.getElementById('gameCanvas');
+const ctx=canvas.getContext('2d');
+canvas.width=NW; canvas.height=NH;
+
+// ───────────────────────────────────────────
+//  ホールデータ
+// ───────────────────────────────────────────
+const holes=[
+  { par:3, ball:{x:80,y:180}, cup:{x:560,y:180},
+    walls:[{x:200,y:100,w:20,h:160},{x:400,y:100,w:20,h:160}],
+    bunkers:[{x:300,y:240,r:30}], name:"HOLE 1 — STRAIGHT" },
+  { par:3, ball:{x:80,y:280}, cup:{x:560,y:80},
+    walls:[{x:180,y:155,w:200,h:20},{x:380,y:155,w:20,h:125}],
+    bunkers:[{x:460,y:240,r:28}], name:"HOLE 2 — DOGLEG" },
+  { par:5, ball:{x:60,y:180}, cup:{x:600,y:180},
+    walls:[{x:140,y:80,w:20,h:100},{x:140,y:220,w:20,h:100},{x:260,y:100,w:160,h:20},{x:260,y:240,w:160,h:20},{x:420,y:80,w:20,h:260},{x:500,y:100,w:20,h:80},{x:500,y:200,w:20,h:80}],
+    bunkers:[{x:370,y:180,r:24}], name:"HOLE 3 — FINALE" },
+];
+
+// ───────────────────────────────────────────
+//  状態変数
+// ───────────────────────────────────────────
+let holeIndex=0, ballX, ballY, ballVX=0, ballVY=0;
+let shots=0, totalShots=0, scoreVsPar=0;
+let inHole=false, ballMoving=false;
+let dragStart=null, dragCurrent=null, powerPct=0;
+let bestScore=(()=>{ try{return localStorage.getItem('tsurutaike_best');}catch(e){return null;} })();
+
+const BALL_R=9, CUP_R=14, BORDER=12;
+const FRICTION=0.97, WALL_BOUNCE=0.55, SPEED_STOP=0.15;
+const MAX_POWER=18, DRAG_SCALE=0.17;
+
+// スマホではボール当たり判定を大きくする
+function hitRadius() { return window.innerWidth<=520 ? BALL_R*6 : BALL_R*4; }
+
+// ───────────────────────────────────────────
+//  初期化 & ゲーム制御
+// ───────────────────────────────────────────
+function initHole() {
+  const h=holes[holeIndex];
+  ballX=h.ball.x; ballY=h.ball.y;
+  ballVX=0; ballVY=0; shots=0; inHole=false; ballMoving=false;
+  dragStart=null; dragCurrent=null; powerPct=0;
+  document.getElementById('btn-next').style.display='none';
+  document.getElementById('btn-restart').style.display='none';
+  document.getElementById('hole-name').textContent=`HOLE ${holeIndex+1} / 3`;
+  document.getElementById('par-badge').textContent=`PAR ${h.par}`;
+  setMsg(`⛳ ${h.name} ／ PAR ${h.par}`);
+  updateUI(); draw();
+}
+function restartGame() {
+  holeIndex=0; totalShots=0; scoreVsPar=0;
+  document.getElementById('result-overlay').classList.remove('show');
+  initHole();
+}
+function nextHole() {
+  holeIndex++;
+  if (holeIndex>=holes.length) showResult(); else initHole();
+}
+function resetHole() {
+  totalShots-=shots;
+  scoreVsPar-=(shots-holes[holeIndex].par);
+  initHole();
+}
+
+// ───────────────────────────────────────────
+//  UI
+// ───────────────────────────────────────────
+function setMsg(t){ document.getElementById('msg-text').innerHTML=t; }
+function updateUI(){
+  document.getElementById('shots-display').textContent=shots;
+  document.getElementById('total-display').textContent=totalShots;
+  const el=document.getElementById('score-display');
+  if(scoreVsPar===0){el.textContent='E';el.style.color='#e8eef2';}
+  else if(scoreVsPar<0){el.textContent=scoreVsPar;el.style.color='#3ecf6a';}
+  else{el.textContent='+'+scoreVsPar;el.style.color='#e06060';}
+  document.getElementById('best-display').textContent=bestScore!==null?bestScore:'--';
+  document.getElementById('power-fill').style.width=powerPct+'%';
+  document.getElementById('power-num').textContent=Math.round(powerPct)+'%';
+}
+
+// ───────────────────────────────────────────
+//  リザルト
+// ───────────────────────────────────────────
+function showResult(){
+  const fin=totalShots;
+  try{if(bestScore===null||fin<parseInt(bestScore)){bestScore=fin;localStorage.setItem('tsurutaike_best',fin);}}catch(e){}
+  document.getElementById('res-score').textContent=fin;
+  const d=scoreVsPar;
+  let rank,comment;
+  if(d<=-5){rank='🏆 伝説のゴルファー！';comment='驚異的なスコア！ぜひ本物のコースへ！';}
+  else if(d<=-2){rank='⭐ プロ級プレイ！';comment='素晴らしい！練習でさらに上達できる！';}
+  else if(d===0){rank='👏 ナイスプレー！';comment='パープレイ達成！センスありますよ！';}
+  else if(d<=3){rank='🌱 ナイスチャレンジ！';comment='いい感じ！実際の打ちっぱなしで磨こう！';}
+  else{rank='⛳ まずは練習から！';comment='大丈夫！打ちっぱなしに行けばすぐ上達！';}
+  document.getElementById('res-rank').textContent=rank;
+  document.getElementById('res-comment').textContent=comment;
+  document.getElementById('res-score').style.color=d<0?'#3ecf6a':d===0?'#ffffff':'#e06060';
+  document.getElementById('result-overlay').classList.add('show');
+  updateUI();
+}
+
+function showToast(text,color){
+  const t=document.getElementById('toast');
+  t.textContent=text; t.style.color=color||'#fff';
+  t.style.borderColor=color||'rgba(26,123,196,0.5)';
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),1300);
+}
+
+// ───────────────────────────────────────────
+//  座標変換（CSS → Canvas 内部座標）
+// ───────────────────────────────────────────
+function getPos(e){
+  const r=canvas.getBoundingClientRect();
+  const sx=NW/r.width, sy=NH/r.height;
+  let cx,cy;
+  if(e.changedTouches&&e.changedTouches.length>0){cx=e.changedTouches[0].clientX;cy=e.changedTouches[0].clientY;}
+  else if(e.touches&&e.touches.length>0){cx=e.touches[0].clientX;cy=e.touches[0].clientY;}
+  else{cx=e.clientX;cy=e.clientY;}
+  return{x:(cx-r.left)*sx,y:(cy-r.top)*sy};
+}
+function dst(ax,ay,bx,by){return(ax-bx)**2+(ay-by)**2;}
+
+// ───────────────────────────────────────────
+//  入力
+// ───────────────────────────────────────────
+canvas.addEventListener('mousedown',  onDown, {passive:false});
+canvas.addEventListener('mousemove',  onMove, {passive:false});
+canvas.addEventListener('mouseup',    onUp,   {passive:false});
+canvas.addEventListener('touchstart', onDown, {passive:false});
+canvas.addEventListener('touchmove',  onMove, {passive:false});
+canvas.addEventListener('touchend',   onUp,   {passive:false});
+canvas.addEventListener('touchcancel',()=>{dragStart=null;dragCurrent=null;powerPct=0;updateUI();draw();},{passive:true});
+
+function onDown(e){
+  e.preventDefault();
+  if(ballMoving||inHole)return;
+  const p=getPos(e);
+  if(dst(p.x,p.y,ballX,ballY)<hitRadius()**2){
+    dragStart={x:p.x,y:p.y}; dragCurrent={x:p.x,y:p.y};
+  }
+}
+function onMove(e){
+  e.preventDefault();
+  if(!dragStart)return;
+  const p=getPos(e);
+  dragCurrent={x:p.x,y:p.y};
+  const dx=dragStart.x-p.x, dy=dragStart.y-p.y;
+  powerPct=Math.min(100,Math.sqrt(dx*dx+dy*dy)*0.65);
+  updateUI(); draw();
+}
+function onUp(e){
+  e.preventDefault();
+  if(!dragStart||ballMoving||inHole)return;
+  const dx=dragStart.x-dragCurrent.x, dy=dragStart.y-dragCurrent.y;
+  const dist=Math.sqrt(dx*dx+dy*dy);
+  if(dist<6){dragStart=null;dragCurrent=null;powerPct=0;updateUI();draw();return;}
+  const power=Math.min(dist*DRAG_SCALE,MAX_POWER);
+  const angle=Math.atan2(dy,dx);
+  ballVX=Math.cos(angle)*power; ballVY=Math.sin(angle)*power;
+  shots++; totalShots++;
+  dragStart=null; dragCurrent=null; powerPct=0;
+  setMsg('💨 ボール飛翔中...');
+  updateUI(); ballMoving=true;
+  requestAnimationFrame(gameLoop);
+}
+
+// ───────────────────────────────────────────
+//  物理
+// ───────────────────────────────────────────
+function gameLoop(){if(!ballMoving)return;update();draw();requestAnimationFrame(gameLoop);}
+
+function update(){
+  const h=holes[holeIndex];
+  ballX+=ballVX; ballY+=ballVY;
+  ballVX*=FRICTION; ballVY*=FRICTION;
+
+  if(ballX-BALL_R<BORDER){ballX=BORDER+BALL_R;ballVX=Math.abs(ballVX)*WALL_BOUNCE;}
+  if(ballX+BALL_R>NW-BORDER){ballX=NW-BORDER-BALL_R;ballVX=-Math.abs(ballVX)*WALL_BOUNCE;}
+  if(ballY-BALL_R<BORDER){ballY=BORDER+BALL_R;ballVY=Math.abs(ballVY)*WALL_BOUNCE;}
+  if(ballY+BALL_R>NH-BORDER){ballY=NH-BORDER-BALL_R;ballVY=-Math.abs(ballVY)*WALL_BOUNCE;}
+
+  for(const w of h.walls){
+    if(ballX+BALL_R>w.x&&ballX-BALL_R<w.x+w.w&&ballY+BALL_R>w.y&&ballY-BALL_R<w.y+w.h){
+      const oL=ballX+BALL_R-w.x,oR=w.x+w.w-(ballX-BALL_R),oT=ballY+BALL_R-w.y,oB=w.y+w.h-(ballY-BALL_R);
+      const m=Math.min(oL,oR,oT,oB);
+      if(m===oL){ballX=w.x-BALL_R;ballVX=-Math.abs(ballVX)*WALL_BOUNCE;}
+      else if(m===oR){ballX=w.x+w.w+BALL_R;ballVX=Math.abs(ballVX)*WALL_BOUNCE;}
+      else if(m===oT){ballY=w.y-BALL_R;ballVY=-Math.abs(ballVY)*WALL_BOUNCE;}
+      else{ballY=w.y+w.h+BALL_R;ballVY=Math.abs(ballVY)*WALL_BOUNCE;}
+    }
+  }
+  for(const b of h.bunkers){if(dst(ballX,ballY,b.x,b.y)<b.r**2){ballVX*=0.88;ballVY*=0.88;}}
+
+  if(dst(ballX,ballY,h.cup.x,h.cup.y)<CUP_R**2){
+    ballMoving=false; inHole=true;
+    const par=h.par, diff=shots-par;
+    scoreVsPar+=diff;
+    let msg,tc;
+    if(shots===1){msg='🦢 ホールインワン！！';tc='#ffd700';}
+    else if(diff<=-2){msg='🦅 イーグル！';tc='#3ecf6a';}
+    else if(diff===-1){msg='🐦 バーディー！';tc='#3ecf6a';}
+    else if(diff===0){msg='👏 パー！';tc='#5ab8f0';}
+    else if(diff===1){msg='😅 ボギー';tc='#e8c040';}
+    else if(diff===2){msg='😓 ダブルボギー';tc='#e08040';}
+    else{msg='💦 '+shots+'打';tc='#e06060';}
+    showToast(msg,tc);
+    setMsg(`${msg} &nbsp;| このホール <span class="msg-em">${shots}打</span>（PAR ${par}）`);
+    updateUI();
+    if(holeIndex<holes.length-1){document.getElementById('btn-next').style.display='inline-block';}
+    else{setTimeout(showResult,1300);}
+    return;
+  }
+
+  if(Math.sqrt(ballVX**2+ballVY**2)<SPEED_STOP){
+    ballVX=0;ballVY=0;ballMoving=false;
+    setMsg(`⛳ <span class="msg-em">${shots}打目</span>完了。次を狙おう！`);
+    updateUI();
+  }
+}
+
+// ───────────────────────────────────────────
+//  描画
+// ───────────────────────────────────────────
+function draw(){
+  const h=holes[holeIndex];
+  ctx.clearRect(0,0,NW,NH);
+
+  const fg=ctx.createLinearGradient(0,0,0,NH);
+  fg.addColorStop(0,'#162a1a');fg.addColorStop(0.5,'#1a3320');fg.addColorStop(1,'#142416');
+  ctx.fillStyle=fg; ctx.fillRect(0,0,NW,NH);
+
+  ctx.fillStyle='rgba(255,255,255,0.015)';
+  for(let i=0;i<180;i++)ctx.fillRect((i*137)%NW,(i*97)%NH,1,1);
+
+  ctx.strokeStyle='#1a7bc4'; ctx.lineWidth=2;
+  ctx.strokeRect(BORDER,BORDER,NW-BORDER*2,NH-BORDER*2);
+  ctx.strokeStyle='rgba(26,123,196,0.18)'; ctx.lineWidth=1;
+  ctx.strokeRect(BORDER+4,BORDER+4,NW-BORDER*2-8,NH-BORDER*2-8);
+
+  for(const b of h.bunkers){
+    const bg=ctx.createRadialGradient(b.x,b.y,0,b.x,b.y,b.r);
+    bg.addColorStop(0,'#c8a96e');bg.addColorStop(1,'#8a6a30');
+    ctx.beginPath();ctx.arc(b.x,b.y,b.r,0,Math.PI*2);
+    ctx.fillStyle=bg;ctx.fill();
+    ctx.strokeStyle='#a07830';ctx.lineWidth=1;ctx.stroke();
+    ctx.fillStyle='rgba(0,0,0,0.2)';ctx.font='bold 9px Barlow';
+    ctx.textAlign='center';ctx.fillText('BUNKER',b.x,b.y+4);
+  }
+
+  for(const w of h.walls){
+    const wg=ctx.createLinearGradient(w.x,w.y,w.x+w.w,w.y+w.h);
+    wg.addColorStop(0,'#2a2a2a');wg.addColorStop(1,'#1a1a1a');
+    ctx.fillStyle=wg;ctx.fillRect(w.x,w.y,w.w,w.h);
+    ctx.strokeStyle='#1a7bc4';ctx.lineWidth=1.5;ctx.strokeRect(w.x,w.y,w.w,w.h);
+  }
+
+  const cx=h.cup.x,cy=h.cup.y;
+  ctx.beginPath();ctx.arc(cx,cy,CUP_R+4,0,Math.PI*2);ctx.fillStyle='rgba(0,0,0,0.4)';ctx.fill();
+  ctx.beginPath();ctx.arc(cx,cy,CUP_R,0,Math.PI*2);ctx.fillStyle='#0a0a0a';ctx.fill();
+  ctx.strokeStyle='#1a7bc4';ctx.lineWidth=2;ctx.stroke();
+  ctx.strokeStyle='#aaa';ctx.lineWidth=1.5;
+  ctx.beginPath();ctx.moveTo(cx,cy-2);ctx.lineTo(cx,cy-28);ctx.stroke();
+  ctx.fillStyle='#e02020';
+  ctx.beginPath();ctx.moveTo(cx,cy-28);ctx.lineTo(cx+14,cy-22);ctx.lineTo(cx,cy-16);ctx.closePath();ctx.fill();
+  const cpg=ctx.createRadialGradient(cx,cy,CUP_R,cx,cy,CUP_R+20);
+  cpg.addColorStop(0,'rgba(26,123,196,0.18)');cpg.addColorStop(1,'transparent');
+  ctx.beginPath();ctx.arc(cx,cy,CUP_R+20,0,Math.PI*2);ctx.fillStyle=cpg;ctx.fill();
+
+  if(dragStart&&dragCurrent&&!ballMoving){
+    const dx=dragStart.x-dragCurrent.x,dy=dragStart.y-dragCurrent.y;
+    const dist=Math.sqrt(dx*dx+dy*dy);
+    if(dist>5){
+      const angle=Math.atan2(dy,dx);
+      ctx.save();ctx.setLineDash([5,8]);
+      ctx.strokeStyle='rgba(90,184,240,0.5)';ctx.lineWidth=1.5;
+      ctx.beginPath();ctx.moveTo(ballX,ballY);
+      const gl=Math.min(dist*1.1,130);
+      ctx.lineTo(ballX+Math.cos(angle)*gl,ballY+Math.sin(angle)*gl);
+      ctx.stroke();ctx.restore();
+      const tx=ballX+Math.cos(angle)*gl,ty=ballY+Math.sin(angle)*gl;
+      ctx.save();ctx.translate(tx,ty);ctx.rotate(angle);
+      ctx.fillStyle='rgba(90,184,240,0.85)';
+      ctx.beginPath();ctx.moveTo(8,0);ctx.lineTo(-4,5);ctx.lineTo(-4,-5);ctx.closePath();ctx.fill();
+      ctx.restore();
+    }
+  }
+
+  if(!inHole){
+    ctx.beginPath();ctx.arc(ballX+3,ballY+3,BALL_R,0,Math.PI*2);ctx.fillStyle='rgba(0,0,0,0.35)';ctx.fill();
+    const bg=ctx.createRadialGradient(ballX-3,ballY-3,1,ballX,ballY,BALL_R);
+    bg.addColorStop(0,'#ffffff');bg.addColorStop(0.7,'#d8e8f0');bg.addColorStop(1,'#a0b8c8');
+    ctx.beginPath();ctx.arc(ballX,ballY,BALL_R,0,Math.PI*2);ctx.fillStyle=bg;ctx.fill();
+    ctx.beginPath();ctx.arc(ballX-3,ballY-3,3,0,Math.PI*2);ctx.fillStyle='rgba(255,255,255,0.7)';ctx.fill();
+    if(ballMoving){
+      const gl=ctx.createRadialGradient(ballX,ballY,BALL_R,ballX,ballY,BALL_R+10);
+      gl.addColorStop(0,'rgba(90,184,240,0.3)');gl.addColorStop(1,'transparent');
+      ctx.beginPath();ctx.arc(ballX,ballY,BALL_R+10,0,Math.PI*2);ctx.fillStyle=gl;ctx.fill();
+    }
+  }
+
+  ctx.font='600 11px Barlow';ctx.fillStyle='rgba(90,184,240,0.75)';
+  ctx.textAlign='left';ctx.fillText('SHOTS: '+shots,BORDER+8,BORDER+18);
+  ctx.textAlign='right';ctx.fillText('PAR '+h.par,NW-BORDER-8,BORDER+18);
+}
+
+initHole();
+
+
+// ===== ハンバーガーメニュー =====
+(function() {
+  var btn     = document.getElementById('hamBtn');
+  var drawer  = document.getElementById('drawer');
+  var overlay = document.getElementById('drawerOverlay');
+  if (!btn) return;
+
+  function openDrawer() {
+    drawer.classList.add('open');
+    overlay.classList.add('open');
+    btn.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeDrawer() {
+    drawer.classList.remove('open');
+    overlay.classList.remove('open');
+    btn.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  window.closeDrawer = closeDrawer;
+  btn.addEventListener('click', function() {
+    drawer.classList.contains('open') ? closeDrawer() : openDrawer();
+  });
+  // ESCキーで閉じる
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeDrawer();
+  });
+})();
+</script>
+</body>
+</html>

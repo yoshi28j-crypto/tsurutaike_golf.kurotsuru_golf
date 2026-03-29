@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>施設 | 鶴田池ゴルフセンター</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@200;300;400;700;900&family=Barlow:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/facility.css">
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <div class="header-block">
+      <img class="crane-logo" src="images/logo.gif" alt="鶴田池ゴルフセンター ロゴ">
+      <div class="header-logo-text">
+        <div class="header-name-row">
+          <a href="index.html#notice-section" class="header-name-link"><span class="ja">鶴田池ゴルフセンター</span></a>
+          <span class="status-badge status-closed">現在休業中</span>
+        </div>
+        <span class="en">TSURUTAIKE GOLF CENTER</span>
+      </div>
+    </div>
+    <div class="header-divider"></div>
+    <div class="header-block">
+      <img class="kurotsu-header-logo" src="images/kurotsu_illust.png" alt="ガレージゴルフ黒鶴 イラスト">
+      <div class="header-kurotsu-text">
+        <div class="header-name-row">
+          <a href="index.html#kurotsu-section" class="header-name-link"><span class="ja">ガレージゴルフ黒鶴</span></a>
+          <span class="status-badge status-open">営業中</span>
+        </div>
+        <span class="en">GARAGE GOLF KUROTSURU</span>
+      </div>
+    </div>
+  </div>
+  <button class="ham-btn" id="hamBtn" aria-label="メニューを開く"><span></span><span></span><span></span></button>
+</header>
+<!-- DRAWER (ハンバーガーメニュー) -->
+<div class="drawer-overlay" id="drawerOverlay" onclick="closeDrawer()"></div>
+<div class="drawer" id="drawer">
+  <div class="drawer-head">
+    <span class="drawer-head-label">MENU</span>
+    <button class="drawer-close-btn" onclick="closeDrawer()" aria-label="メニューを閉じる">✕</button>
+  </div>
+  <nav class="drawer-nav">
+      <a href="index.html">HOME</a>
+      <a href="facility.html" class="drawer-active">施　設</a>
+      <a class="drawer-disabled"><span class="nav-coming">準備中</span>営業時間・料金</a>
+      <a class="drawer-disabled"><span class="nav-coming">準備中</span>スクール</a>
+      <a href="access.html">アクセス</a>
+      <a href="game.html">ミニゲーム</a>
+  </nav>
+</div>
+
+<!-- NAV -->
+<nav>
+  <ul>
+    <li><a href="index.html">HOME</a></li>
+    <li><a href="facility.html" class="active">施　設</a></li>
+    <li><a class="disabled" aria-disabled="true" tabindex="-1"><span class="nav-coming">準備中</span>営業時間・料金</a></li>
+    <li><a class="disabled" aria-disabled="true" tabindex="-1"><span class="nav-coming">準備中</span>スクール</a></li>
+    <li><a href="access.html">アクセス</a></li>
+    <li><a href="game.html">ミニゲーム</a></li>
+  </ul>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <span class="page-hero-label">FACILITY</span>
+  <h1>施　設</h1>
+</div>
+
+<!-- CONTENT -->
+<div class="content-wrap">
+
+  <!-- ゴルフ工房 -->
+  <span class="sec-label">NOW OPEN</span>
+  <div class="sec-title">アフターゴルフ工房</div>
+
+  <div class="kobo-block">
+    <div class="kobo-badge">営業中</div>
+    <p class="kobo-lead">
+      当センターに隣接する<strong style="color:var(--gold-light);">アフターゴルフ工房</strong>。<br>
+      クラブの修理・リペア、その他ゴルフクラブに関する<br>
+      あらゆるトラブルを解決いたします。
+    </p>
+
+    <!-- 写真・マップ -->
+    <div class="kobo-media">
+      <div class="kobo-photo-wrap">
+        <img src="images/kobo_outside.gif" alt="アフターゴルフ工房 外観" class="kobo-photo">
+        <span class="kobo-photo-label">アフターゴルフ工房 外観</span>
+      </div>
+      <div class="kobo-map-wrap">
+        <img src="images/golfkobo_map.gif" alt="ゴルフ工房 場所マップ" class="kobo-map">
+        <span class="kobo-photo-label">駐車場内の場所</span>
+      </div>
+    </div>
+
+    <p class="kobo-trouble-title">こんなお悩みはありませんか？</p>
+    <ul class="kobo-trouble">
+      <li>シャフトが曲がってしまった！</li>
+      <li>クラブが古くて傷だらけ…</li>
+      <li>重量・角度・バランスがしっくりこない！</li>
+    </ul>
+
+    <div class="kobo-service">
+      <li>微調整やリペアはもちろんの事</li>
+      <li>あなただけの最強のクラブをお作りします</li>
+      <li>納得できるプレーのためのお手伝い</li>
+      <li>ゴルフクラブのことなら何でもご相談を</li>
+    </div>
+
+    <a href="tel:072-273-6600" class="kobo-tel">
+      <div>
+        <span class="kobo-tel-label">お問合せ・ご予約</span>
+        <span class="kobo-tel-num">072-273-6600</span>
+      </div>
+    </a>
+  </div>
+
+  <!-- katsuzou cafe -->
+  <div class="cafe-section">
+    <span class="sec-label" style="color:var(--blue-soft);">NOW OPEN</span>
+    <div class="sec-title" style="border-color:var(--blue);">katsuzou cafe（カツゾウカフェ）</div>
+
+    <div class="cafe-block">
+
+      <!-- 外観写真（大）＋ロゴ右上 -->
+      <div class="cafe-outside-wrap">
+        <img src="images/katsuzo_outside.jpeg" alt="katsuzou cafe 外観" class="cafe-outside-img">
+      </div>
+
+      <!-- キャッチコピー＋ロゴ -->
+      <div class="cafe-catch">
+        <span class="cafe-catch-text">ゴルフの前後に、寛ぎのひとときを。</span>
+        <img src="images/katsuzo_logo.jpg" alt="katsuzou cafe ロゴ" class="cafe-logo-img">
+      </div>
+      <p class="cafe-lead">
+        鶴田池ゴルフセンター敷地内に誕生した、緑あふれる癒しのカフェ。<br>
+        白と木を基調としたナチュラルな店内は、大きな窓から自然光が差し込む開放的な空間。<br>
+        創業270年以上のオランダ老舗ブランド<em>「ダウエグバーツ」</em>の珈琲とともに、ゆったりとした時間をお過ごしください。
+      </p>
+
+      <!-- 写真ギャラリー（4枚） -->
+      <div class="cafe-gallery">
+        <img src="images/katsuzo_inside.jpeg" alt="店内" class="cafe-gallery-img">
+        <img src="images/katsuzo_coffeehot.jpeg" alt="ホットコーヒー" class="cafe-gallery-img">
+        <img src="images/katsuzo_coffee.jpg" alt="アイスコーヒー" class="cafe-gallery-img">
+        <img src="images/katsuzo_morning.jpg" alt="モーニング" class="cafe-gallery-img">
+      </div>
+
+      <!-- 特徴 -->
+      <div class="cafe-features">
+        <div class="cafe-feature">
+          <span class="cafe-feature-icon">☕</span>
+          <div>
+            <p class="cafe-feature-title">こだわりの珈琲・紅茶</p>
+            <p class="cafe-feature-desc">ダウエグバーツ珈琲のほか、高級茶葉 Mighty Leaf を使用した紅茶もお愉しみください。</p>
+          </div>
+        </div>
+        <div class="cafe-feature">
+          <span class="cafe-feature-icon">🥪</span>
+          <div>
+            <p class="cafe-feature-title">45パターン以上のモーニング</p>
+            <p class="cafe-feature-desc">トースト・ドッグ・ハーフ＆ハーフ、たまごの調理法も選べる充実のモーニング。550円〜。</p>
+          </div>
+        </div>
+        <div class="cafe-feature">
+          <span class="cafe-feature-icon">📶</span>
+          <div>
+            <p class="cafe-feature-title">フリーWi-Fi・コンセント完備</p>
+            <p class="cafe-feature-desc">テレワークや勉強にもぴったり。ゆっくりと過ごせる心地よい空間です。</p>
+          </div>
+        </div>
+        <div class="cafe-feature">
+          <span class="cafe-feature-icon">🛍</span>
+          <div>
+            <p class="cafe-feature-title">テイクアウトOK</p>
+            <p class="cafe-feature-desc">ドリンク・フードはすべてテイクアウト対応。練習前の一杯にも。</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 営業情報 -->
+      <div class="cafe-info-grid">
+        <div class="cafe-info-item">
+          <span class="cafe-info-label">営業時間</span>
+          <span class="cafe-info-val">平日 9:00〜19:30<br>土日祝 8:00〜19:30</span>
+        </div>
+        <div class="cafe-info-item">
+          <span class="cafe-info-label">モーニング</span>
+          <span class="cafe-info-val">平日〜12:00<br>土日祝〜13:00</span>
+        </div>
+        <div class="cafe-info-item">
+          <span class="cafe-info-label">ランチ</span>
+          <span class="cafe-info-val">11:00〜14:00</span>
+        </div>
+        <div class="cafe-info-item">
+          <span class="cafe-info-label">電話</span>
+          <a href="tel:072-247-5564" class="cafe-info-tel">072-247-5564</a>
+        </div>
+      </div>
+
+      <a href="https://www.instagram.com/katsuzou.cafe/" class="cafe-sns-btn" target="_blank">
+        📷 Instagram @katsuzou.cafe
+      </a>
+    </div>
+  </div>
+
+  <!-- 保留施設 -->
+  <div class="pending-section">
+    <p class="pending-title">OTHER FACILITIES — 2027 RENEWAL OPEN</p>
+    <div class="pending-grid">
+      <div class="pending-card">
+        <h3>エントランス・フロント</h3>
+        <p>明るいフロントでお客様をお出迎えします。</p>
+        <div class="pending-card-overlay"><span>2027年秋頃<br>リニューアル予定</span></div>
+      </div>
+      <div class="pending-card">
+        <h3>打　席</h3>
+        <p>最長300ヤード・全100打席。ふかふかカーペットの快適打席。</p>
+        <div class="pending-card-overlay"><span>2027年秋頃<br>リニューアル予定</span></div>
+      </div>
+      <div class="pending-card">
+        <h3>ゴルフ用品</h3>
+        <p>センター内にゴルフパートナー販売店常設。充実の品揃え。</p>
+        <div class="pending-card-overlay"><span>2027年秋頃<br>リニューアル予定</span></div>
+      </div>
+      <div class="pending-card">
+        <h3>その他施設</h3>
+        <p>ロッカールーム・全自動ウォシュレット・館内フリーWifi完備。</p>
+        <div class="pending-card-overlay"><span>2027年秋頃<br>リニューアル予定</span></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo-area">
+    <a href="index.html#notice-section" class="footer-logo-link">
+      <img src="images/logo.gif" alt="鶴田池ゴルフセンター ロゴ" style="width:36px;height:36px;object-fit:contain;">
+      <div class="footer-logo-text">
+        <div class="ja">鶴田池ゴルフセンター</div>
+        <div class="en">TSURUTAIKE GOLF CENTER</div>
+      </div>
+    </a>
+    <div class="footer-logo-divider"></div>
+    <a href="index.html#kurotsu-section" class="footer-logo-link">
+      <img src="images/kurotsu_illust.png" alt="ガレージゴルフ黒鶴" style="height:36px;width:auto;object-fit:contain;">
+      <div class="footer-logo-text">
+        <div class="ja">ガレージゴルフ黒鶴</div>
+        <div class="en">GARAGE GOLF KUROTSURU</div>
+      </div>
+    </a>
+  </div>
+  <div style="margin-bottom:20px;">
+    <div class="footer-links">
+      <a href="index.html">HOME</a>
+      <a href="facility.html">施　設</a>
+      <a class="disabled" aria-disabled="true" tabindex="-1"><span class="nav-coming">準備中</span>営業時間・料金</a>
+      <a class="disabled" aria-disabled="true" tabindex="-1"><span class="nav-coming">準備中</span>スクール</a>
+      <a href="access.html">アクセス</a>
+      <a href="game.html">ミニゲーム</a>
+    </div>
+  </div>
+  <address>〒593-8312 堺市西区草部1630　鶴田池ゴルフセンター<br>電話：072-273-6600</address>
+  <p class="copy">Copyright © TSURUTAIKE GOLF CENTER All Rights Reserved.</p>
+</footer>
+
+<script>
+// ===== ハンバーガーメニュー =====
+(function() {
+  var btn     = document.getElementById('hamBtn');
+  var drawer  = document.getElementById('drawer');
+  var overlay = document.getElementById('drawerOverlay');
+  if (!btn) return;
+  function openDrawer()  { drawer.classList.add('open');    overlay.classList.add('open');    btn.classList.add('open');    document.body.style.overflow='hidden'; }
+  function closeDrawer() { drawer.classList.remove('open'); overlay.classList.remove('open'); btn.classList.remove('open'); document.body.style.overflow=''; }
+  window.closeDrawer = closeDrawer;
+  btn.addEventListener('click', function() { drawer.classList.contains('open') ? closeDrawer() : openDrawer(); });
+  document.addEventListener('keydown', function(e) { if (e.key==='Escape') closeDrawer(); });
+})();
+</script>
+</body>
+</html>

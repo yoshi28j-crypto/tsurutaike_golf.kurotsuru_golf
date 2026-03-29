@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>アクセス | 鶴田池ゴルフセンター</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@200;300;400;700;900&family=Barlow:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/access.css">
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <div class="header-block">
+      <img class="crane-logo" src="images/logo.gif" alt="鶴田池ゴルフセンター ロゴ">
+      <div class="header-logo-text">
+        <div class="header-name-row">
+          <a href="index.html#notice-section" class="header-name-link"><span class="ja">鶴田池ゴルフセンター</span></a>
+          <span class="status-badge status-closed">現在休業中</span>
+        </div>
+        <span class="en">TSURUTAIKE GOLF CENTER</span>
+      </div>
+    </div>
+    <div class="header-divider"></div>
+    <div class="header-block">
+      <img class="kurotsu-header-logo" src="images/kurotsu_illust.png" alt="ガレージゴルフ黒鶴 イラスト">
+      <div class="header-kurotsu-text">
+        <div class="header-name-row">
+          <a href="index.html#kurotsu-section" class="header-name-link"><span class="ja">ガレージゴルフ黒鶴</span></a>
+          <span class="status-badge status-open">営業中</span>
+        </div>
+        <span class="en">GARAGE GOLF KUROTSURU</span>
+      </div>
+    </div>
+  </div>
+  <button class="ham-btn" id="hamBtn" aria-label="メニューを開く"><span></span><span></span><span></span></button>
+</header>
+<!-- DRAWER (ハンバーガーメニュー) -->
+<div class="drawer-overlay" id="drawerOverlay" onclick="closeDrawer()"></div>
+<div class="drawer" id="drawer">
+  <div class="drawer-head">
+    <span class="drawer-head-label">MENU</span>
+    <button class="drawer-close-btn" onclick="closeDrawer()" aria-label="メニューを閉じる">✕</button>
+  </div>
+  <nav class="drawer-nav">
+      <a href="index.html">HOME</a>
+      <a href="facility.html">施　設</a>
+      <a class="drawer-disabled"><span class="nav-coming">準備中</span>営業時間・料金</a>
+      <a class="drawer-disabled"><span class="nav-coming">準備中</span>スクール</a>
+      <a href="access.html" class="drawer-active">アクセス</a>
+      <a href="game.html">ミニゲーム</a>
+  </nav>
+</div>
+
+<!-- NAV -->
+<nav>
+  <ul>
+    <li><a href="index.html">HOME</a></li>
+    <li><a href="facility.html">施　設</a></li>
+    <li><a class="disabled" aria-disabled="true" tabindex="-1"><span class="nav-coming">準備中</span>営業時間・料金</a></li>
+    <li><a class="disabled" aria-disabled="true" tabindex="-1"><span class="nav-coming">準備中</span>スクール</a></li>
+    <li><a href="access.html" class="active">アクセス</a></li>
+    <li><a href="game.html">ミニゲーム</a></li>
+  </ul>
+</nav>
+
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <span class="page-hero-label">ACCESS</span>
+  <h1>アクセス</h1>
+</div>
+
+<!-- CONTENT -->
+<div class="content-wrap">
+
+  <!-- 住所・電話 -->
+  <div class="info-grid">
+    <div class="info-item">
+      <span class="info-icon">📍</span>
+      <div>
+        <p class="info-label">住　所</p>
+        <p class="info-text">〒593-8312<br>堺市西区草部1630<br>鶴田池ゴルフセンター<br><span style="color:var(--blue-soft); font-size:0.88rem; letter-spacing:0.08em;">ガレージゴルフ黒鶴</span></p>
+      </div>
+    </div>
+    <div class="info-item">
+      <span class="info-icon">📞</span>
+      <div>
+        <p class="info-label">電　話</p>
+        <span class="info-tel-label">鶴田池ゴルフセンター</span>
+        <a href="tel:072-273-6600" class="info-tel">072-273-6600</a>
+        <span class="info-tel-label" style="margin-top:12px;">ガレージゴルフ黒鶴</span>
+        <a href="tel:072-288-7511" class="info-tel">072-288-7511</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 詳細マップ -->
+  <div class="map-section-title">詳細マップ</div>
+  <div class="map-wrap" style="margin-bottom:32px;">
+    <img src="images/kurotsu_map.jpg" alt="詳細アクセスマップ" style="width:100%; display:block; border-radius:2px;">
+  </div>
+
+  <!-- 広域マップ -->
+  <div class="map-section-title">広域マップ</div>
+  <div class="map-wrap">
+    <iframe
+      src="https://maps.google.com/maps?q=大阪府堺市西区草部1630+鶴田池ゴルフセンター&hl=ja&z=17&output=embed"
+      width="100%" height="380" style="border:0;" allowfullscreen="" loading="lazy">
+    </iframe>
+  </div>
+
+  <!-- 車でのアクセス -->
+  <div class="access-block">
+    <div class="access-block-title">🚗 お車でお越しのお客様</div>
+    <ul class="access-list">
+      <li>国道２６号線（第二阪和国道）<strong>葛の葉町北交差点</strong>を<br>泉北有料道路高架沿いに <strong>東へ約２km</strong></li>
+      <li>泉北２号線 <strong>平井大橋交差点</strong>を<br>泉北有料道路高架沿いに <strong>西へ約２km</strong></li>
+    </ul>
+    <div class="parking-note">
+      <span class="parking-badge">P</span>
+      駐車場 <strong style="color:var(--white);">１００台</strong>完備　※ご来場はお車が便利です
+    </div>
+  </div>
+
+  <!-- 電車・バスでのアクセス -->
+  <div class="access-block">
+    <div class="access-block-title">🚃 電車・バスをご利用のお客様</div>
+    <ul class="access-list">
+      <li>
+        <strong>JR阪和線 鳳駅</strong> より<br>
+        南海バス ８系統・特８系統（光明池駅行き）乗車<br>
+        <span class="bus-stop">山田北バス停</span> 下車 徒歩１分
+      </li>
+      <li>
+        <strong>南海・泉北高速鉄道 光明池駅</strong> より<br>
+        南海バス ８系統・特８系統（西区役所前行き）乗車<br>
+        <span class="bus-stop">山田北バス停</span> 下車 徒歩１分
+      </li>
+    </ul>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo-area">
+    <a href="index.html#notice-section" class="footer-logo-link">
+      <img src="images/logo.gif" alt="鶴田池ゴルフセンター ロゴ" style="width:36px;height:36px;object-fit:contain;">
+      <div class="footer-logo-text">
+        <div class="ja">鶴田池ゴルフセンター</div>
+        <div class="en">TSURUTAIKE GOLF CENTER</div>
+      </div>
+    </a>
+    <div class="footer-logo-divider"></div>
+    <a href="index.html#kurotsu-section" class="footer-logo-link">
+      <img src="images/kurotsu_illust.png" alt="ガレージゴルフ黒鶴" style="height:36px;width:auto;object-fit:contain;">
+      <div class="footer-logo-text">
+        <div class="ja">ガレージゴルフ黒鶴</div>
+        <div class="en">GARAGE GOLF KUROTSURU</div>
+      </div>
+    </a>
+  </div>
+  <div style="margin-bottom:20px;">
+    <div class="footer-links">
+      <a href="index.html">HOME</a>
+      <a href="facility.html">施　設</a>
+      <a class="disabled" aria-disabled="true" tabindex="-1"><span class="nav-coming">準備中</span>営業時間・料金</a>
+      <a class="disabled" aria-disabled="true" tabindex="-1"><span class="nav-coming">準備中</span>スクール</a>
+      <a href="access.html">アクセス</a>
+      <a href="game.html">ミニゲーム</a>
+    </div>
+  </div>
+  <address>〒593-8312 堺市西区草部1630　鶴田池ゴルフセンター<br>電話：072-273-6600</address>
+  <p class="copy">Copyright © TSURUTAIKE GOLF CENTER All Rights Reserved.</p>
+</footer>
+
+<script>
+// ===== ハンバーガーメニュー =====
+(function() {
+  var btn     = document.getElementById('hamBtn');
+  var drawer  = document.getElementById('drawer');
+  var overlay = document.getElementById('drawerOverlay');
+  if (!btn) return;
+  function openDrawer()  { drawer.classList.add('open');    overlay.classList.add('open');    btn.classList.add('open');    document.body.style.overflow='hidden'; }
+  function closeDrawer() { drawer.classList.remove('open'); overlay.classList.remove('open'); btn.classList.remove('open'); document.body.style.overflow=''; }
+  window.closeDrawer = closeDrawer;
+  btn.addEventListener('click', function() { drawer.classList.contains('open') ? closeDrawer() : openDrawer(); });
+  document.addEventListener('keydown', function(e) { if (e.key==='Escape') closeDrawer(); });
+})();
+</script>
+</body>
+</html>

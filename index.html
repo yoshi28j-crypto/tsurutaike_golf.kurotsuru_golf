@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>鶴田池ゴルフセンター | TSURUTAIKE GOLF CENTER</title>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@200;300;400;700;900&family=Noto+Serif+JP:wght@400;700;900&family=Barlow:ital,wght@0,300;0,400;0,600;0,700;0,900;1,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/common.css">
+  <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<header>
+  <div class="header-inner">
+
+    <!-- 左：鶴田池ゴルフセンター -->
+    <div class="header-block">
+      <img class="crane-logo" src="images/logo.gif" alt="鶴田池ゴルフセンター ロゴ">
+      <div class="header-logo-text">
+        <div class="header-name-row">
+          <a href="#notice-section" class="header-name-link"><span class="ja">鶴田池ゴルフセンター</span></a>
+          <span class="status-badge status-closed">現在休業中</span>
+        </div>
+        <span class="en">TSURUTAIKE GOLF CENTER</span>
+      </div>
+    </div>
+
+    <!-- 区切り線 -->
+    <div class="header-divider"></div>
+
+    <!-- 右：ガレージゴルフ黒鶴（イラストのみ） -->
+    <div class="header-block">
+      <img class="kurotsu-header-logo" src="images/kurotsu_illust.png" alt="ガレージゴルフ黒鶴 イラスト">
+      <div class="header-kurotsu-text">
+        <div class="header-name-row">
+          <a href="#kurotsu-section" class="header-name-link"><span class="ja">ガレージゴルフ黒鶴</span></a>
+          <span class="status-badge status-open">営業中</span>
+        </div>
+        <span class="en">GARAGE GOLF KUROTSURU</span>
+      </div>
+    </div>
+
+  </div>
+  <button class="ham-btn" id="hamBtn" aria-label="メニューを開く"><span></span><span></span><span></span></button>
+</header>
+
+<!-- DRAWER -->
+<div class="drawer-overlay" id="drawerOverlay" onclick="closeDrawer()"></div>
+<div class="drawer" id="drawer">
+  <div class="drawer-head">
+    <span class="drawer-head-label">MENU</span>
+    <button class="drawer-close-btn" onclick="closeDrawer()">✕</button>
+  </div>
+  <nav class="drawer-nav">
+    <a href="index.html" class="drawer-active">HOME</a>
+    <a href="facility.html">施　設</a>
+    <a class="drawer-disabled"><span class="nav-coming">準備中</span>営業時間・料金</a>
+    <a class="drawer-disabled"><span class="nav-coming">準備中</span>スクール</a>
+    <a href="access.html">アクセス</a>
+    <a href="game.html">ミニゲーム</a>
+  </nav>
+</div>
+
+<!-- ===== NAV ===== -->
+<nav>
+  <ul>
+    <li><a href="#" class="active">HOME</a></li>
+    <li><a href="facility.html">施　設</a></li>
+    <li><a class="disabled" aria-disabled="true" tabindex="-1"><span class="nav-coming">準備中</span>営業時間・料金</a></li>
+    <li><a class="disabled" aria-disabled="true" tabindex="-1"><span class="nav-coming">準備中</span>スクール</a></li>
+    <li><a href="access.html">アクセス</a></li>
+    <li><a href="game.html">ミニゲーム</a></li>
+  </ul>
+</nav>
+<!-- ===== HERO ===== -->
+<div class="hero">
+  <img class="hero-crane" src="images/hero_crane.gif" alt="鶴田池ゴルフセンター ロゴ">
+
+  <div class="hero-badge">RENEWAL OPEN</div>
+  <div class="hero-autumn">2027 AUTUMN</div>
+  <h1>鶴田池ゴルフセンター<br><span>リニューアルオープン予定</span></h1>
+  <p class="hero-sub">
+    We will be back
+  </p>
+  <div class="hero-year">2027</div>
+</div>
+
+<!-- ===== 休業のお知らせ ===== -->
+<div class="section-wrapper" id="notice-section">
+  <div class="section-title stagger-title">
+    <span class="stagger-word" style="--i:0">営業再開に向けた</span><span class="stagger-word" style="--i:1">お知らせ</span>
+  </div>
+  <div class="closure-notice">
+    <p>
+      平素より鶴田池ゴルフセンターをご利用くださいまして誠にありがとうございます。<br>
+      大阪府による鶴田池の耐震工事に伴い、当ゴルフセンターは2024年9月より休業しておりますが、<br>
+      <strong style="color:var(--white);">営業再開に向けた準備が整ってまいりましたのでご案内申し上げます。</strong>
+    </p>
+
+    <p>
+      長期間にわたる休業となり、これまでご愛顧くださいましたお客様には大変ご迷惑をおかけいたしますが、<br>
+      何とぞご理解賜りますようお願い申し上げます。
+    </p>
+    <p class="reopen-highlight">
+      リニューアル工事を経て、生まれ変わった姿でお会いできますことを、心より楽しみにしております。
+    </p>
+    <span class="date-label">2026年1月吉日</span>
+    <p class="sign">鶴田池ゴルフセンター<br>スタッフ一同</p>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ===== ガレージゴルフ黒鶴（最強調） ===== -->
+<div class="kurotsu-section" id="kurotsu-section">
+  <div class="kurotsu-img-wrap">
+    <!-- 高さ基準用（透明・実寸） -->
+    <img class="kurotsu-base-img" src="images/kurotsu_base.gif" alt="">
+    <!-- 3枚のスライド -->
+    <img class="kurotsu-slide ks1" src="images/kurotsu_kanban.gif" alt="500円看板">
+    <img class="kurotsu-slide ks2" src="images/kurotsu_gaikan.gif" alt="外観">
+    <img class="kurotsu-slide ks3" src="images/kurotsu_inside.gif" alt="室内">
+    <!-- オーバーレイ -->
+    <div class="kurotsu-over-bg"></div>
+    <!-- コンテンツ -->
+    <div class="kurotsu-over-content">
+      <div class="kurotsu-header">
+        <div class="kurotsu-logo-wrap">
+          <img src="images/kurotsu_logo.png" alt="ガレージゴルフ黒鶴 ロゴ" class="kurotsu-logo-img">
+        </div>
+        <div class="kurotsu-header-sub">
+          <span class="now-open">● NOW OPEN</span>
+          <p class="kurotsu-typed-wrap">
+            <span id="kurotsu-typed"></span><span class="kurotsu-cursor">|</span>
+          </p>
+          <p class="kurotsu-place">（当センター駐車場内）</p>
+        </div>
+      </div>
+      <div class="kurotsu-body">
+        <div class="kurotsu-desc" style="padding:24px 26px;">
+          <ul class="kurotsu-features">
+            <li class="kf-item">天候に左右されないインドアゴルフ</li>
+            <li class="kf-item">５打席のみの静かで落ち着いた空間の中</li>
+            <li class="kf-item">フルスイングもアプローチも</li>
+            <li class="kf-item">心ゆくまでのひとときを</li>
+          </ul>
+        </div>
+                  <div class="kurotsu-right-col">
+            <div class="kurotsu-price" id="price-fadein">
+              <div class="campaign-banner">
+                <span class="campaign-label">● CAMPAIGN</span>
+                <p class="campaign-title">キャンペーン継続中！</p>
+              </div>
+              <div class="price-normal-wrap">
+                <span class="price-normal-label">通常料金</span>
+                <div class="price-row-old">
+                  <span class="label-old">平日</span>
+                  <span class="amount-old">¥1,210</span>
+                </div>
+                <div class="price-row-old">
+                  <span class="label-old">土日祝</span>
+                  <span class="amount-old">¥1,430</span>
+                </div>
+              </div>
+              <div class="price-campaign-wrap">
+                <span class="price-campaign-label">平日・土日祝 すべて</span>
+                <div class="price-campaign-main">
+                  <span class="price-campaign-time">50分</span>
+                  <span class="price-campaign-yen">¥500</span>
+                  <span class="price-campaign-tax">（税込）</span>
+                </div>
+                <p class="price-campaign-sub">打ち放題</p>
+              </div>
+              <div class="open-hours">
+                営業時間：9:00 〜 21:00<br>
+                <span style="font-size:0.8em;opacity:0.65;">最終受付 20:00</span>
+              </div>
+            </div>
+            <a href="tel:072-288-7511" class="tel-kurotsu" id="tel-fadein">
+              電話予約受付中
+              <strong>072-288-7511</strong>
+            </a>
+            <div class="kurotsu-sns-row">
+              <a href="https://www.instagram.com/tsurutaike_golfcenter/" class="kurotsu-sns-btn kurotsu-sns-ig" target="_blank">
+                <span class="sns-icon">📷</span>Instagram
+              </a>
+              <a href="https://lin.ee/6sRjwvOL" class="kurotsu-sns-btn kurotsu-sns-line" target="_blank">
+                <span class="sns-icon">💬</span>LINE
+              </a>
+            </div>
+          </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- スマホ用料金（PCは非表示） -->
+<div class="kurotsu-price-mobile">
+  <div class="kurotsu-right-col">
+            <div class="kurotsu-price" id="price-mobile">
+              <div class="campaign-banner">
+                <span class="campaign-label">● CAMPAIGN</span>
+                <p class="campaign-title">キャンペーン継続中！</p>
+              </div>
+              <div class="price-normal-wrap">
+                <span class="price-normal-label">通常料金</span>
+                <div class="price-row-old">
+                  <span class="label-old">平日</span>
+                  <span class="amount-old">¥1,210</span>
+                </div>
+                <div class="price-row-old">
+                  <span class="label-old">土日祝</span>
+                  <span class="amount-old">¥1,430</span>
+                </div>
+              </div>
+              <div class="price-campaign-wrap">
+                <span class="price-campaign-label">平日・土日祝 すべて</span>
+                <div class="price-campaign-main">
+                  <span class="price-campaign-time">50分</span>
+                  <span class="price-campaign-yen">¥500</span>
+                  <span class="price-campaign-tax">（税込）</span>
+                </div>
+                <p class="price-campaign-sub">打ち放題</p>
+              </div>
+              <div class="open-hours">
+                営業時間：9:00 〜 21:00<br>
+                <span style="font-size:0.8em;opacity:0.65;">最終受付 20:00</span>
+              </div>
+            </div>
+            <a href="tel:072-288-7511" class="tel-kurotsu" id="tel-mobile">
+              電話予約受付中
+              <strong>072-288-7511</strong>
+            </a>
+            <div class="kurotsu-sns-row">
+              <a href="https://www.instagram.com/tsurutaike_golfcenter/" class="kurotsu-sns-btn kurotsu-sns-ig" target="_blank">
+                <span class="sns-icon">📷</span>Instagram
+              </a>
+              <a href="https://lin.ee/6sRjwvOL" class="kurotsu-sns-btn kurotsu-sns-line" target="_blank">
+                <span class="sns-icon">💬</span>LINE
+              </a>
+            </div>
+  </div>
+</div>
+
+<!-- ===== ヒストリー ===== -->
+<div class="history-section">
+  <div class="history-inner">
+
+    <!-- 見出し -->
+    <div class="history-heading">
+      <span class="history-label">HISTORY</span>
+      <h2 class="history-title stagger-title">
+        <span class="stagger-word" style="--i:0">鶴田池</span>
+        <span class="stagger-word" style="--i:1">〜</span>
+        <span class="stagger-word" style="--i:2">黒鶴ヒストリー</span>
+      </h2>
+      <div class="history-rule"></div>
+    </div>
+
+    <!-- 本文 -->
+    <div class="history-body">
+
+      <!-- タイムライン縦線＋各アイテム -->
+      <div class="history-timeline" id="history-timeline">
+
+        <!-- 奈良時代 -->
+        <div class="history-tl-item" data-tl-delay="0">
+          <div class="history-tl-dot"></div>
+          <div class="history-tl-era">奈良時代</div>
+          <p class="history-tl-text">
+            僧侶・行基が地域のために築いたと伝わる<em>鶴田池</em>。<br>
+            この地に息づく歴史と、人々の暮らしを支えてきた<br class="history-br">
+            水辺の記憶に想いを馳せ、<br class="history-br">
+            当ゴルフセンターは<strong>1970年</strong>に開業しました。
+          </p>
+        </div>
+
+        <!-- 2025年 -->
+        <div class="history-tl-item" data-tl-delay="900">
+          <div class="history-tl-dot"></div>
+          <div class="history-tl-era">2025年</div>
+          <p class="history-tl-text">
+            新たな挑戦として誕生した<em>「ガレージゴルフ黒鶴」</em>。<br>
+            落ち着いた雰囲気の中で幸福な時間をお過ごしいただきたいという思いを込め、<br class="history-br">
+            水辺の静寂さや落ち着きをイメージした<strong>「黒」</strong>、<br class="history-br">
+            古来より幸運の象徴とされる<strong>「鶴」</strong>を店名に冠しました。
+          </p>
+        </div>
+
+      </div><!-- /.history-timeline -->
+
+      <!-- 締めの言葉 -->
+      <div class="history-closing" id="history-closing">
+        <p class="history-closing-pc">黒鶴でのひとときが　より豊かなものと<br>なりますように</p>
+        <p class="history-closing-sp">黒鶴でのひとときが<br>より豊かなものと<br>なりますように</p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<hr class="divider">
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="footer-logo-area">
+    <a href="#notice-section" class="footer-logo-link">
+      <img src="images/logo.gif" alt="鶴田池ゴルフセンター ロゴ" style="width:36px;height:36px;object-fit:contain;">
+      <div class="footer-logo-text">
+        <div class="ja">鶴田池ゴルフセンター</div>
+        <div class="en">TSURUTAIKE GOLF CENTER</div>
+      </div>
+    </a>
+    <div class="footer-logo-divider"></div>
+    <a href="#kurotsu-section" class="footer-logo-link">
+      <img src="images/kurotsu_illust.png" alt="ガレージゴルフ黒鶴" style="height:36px;width:auto;object-fit:contain;">
+      <div class="footer-logo-text">
+        <div class="ja">ガレージゴルフ黒鶴</div>
+        <div class="en">GARAGE GOLF KUROTSURU</div>
+      </div>
+    </a>
+  </div>
+  <div style="margin-bottom:20px;">
+    <div class="footer-links">
+      <a href="#">HOME</a>
+      <a href="facility.html">施　設</a>
+      <a class="footer-disabled"><span class="nav-coming">準備中</span>営業時間・料金</a>
+      <a class="footer-disabled"><span class="nav-coming">準備中</span>スクール</a>
+      <a href="access.html">アクセス</a>
+      <a href="game.html">ミニゲーム</a>
+    </div>
+  </div>
+  <address>
+    〒593-8312 堺市西区草部1630　鶴田池ゴルフセンター<br>
+    電話：072-273-6600
+  </address>
+  <p class="copy">Copyright © TSURUTAIKE GOLF CENTER All Rights Reserved.</p>
+</footer>
+
+<script>
+// ===== ヘッダーオフセット付きスムーススクロール =====
+(function() {
+  function getHeaderHeight() {
+    var h = document.querySelector('header');
+    return h ? h.offsetHeight : 0;
+  }
+  // notice-section: ヘッダー + 16px余白（見出しが見えるよう）
+  // kurotsu-section: ヘッダーぴったり（青帯が全部見えるよう）
+  var offsets = { 'notice-section': 16, 'kurotsu-section': 0 };
+
+  document.querySelectorAll('a[href^="#"]').forEach(function(link) {
+    link.addEventListener('click', function(e) {
+      var hash = link.getAttribute('href').slice(1);
+      if (!(hash in offsets)) return;
+      e.preventDefault();
+      var target = document.getElementById(hash);
+      if (!target) return;
+      var top = target.getBoundingClientRect().top + window.pageYOffset;
+      window.scrollTo({ top: top - getHeaderHeight() - offsets[hash], behavior: 'smooth' });
+    });
+  });
+
+  // 別ページから #hash 付きで来た場合のオフセット調整
+  if (window.location.hash) {
+    var hash = window.location.hash.slice(1);
+    if (hash in offsets) {
+      setTimeout(function() {
+        var target = document.getElementById(hash);
+        if (!target) return;
+        var top = target.getBoundingClientRect().top + window.pageYOffset;
+        window.scrollTo({ top: top - getHeaderHeight() - offsets[hash], behavior: 'smooth' });
+      }, 150);
+    }
+  }
+})();
+
+// ===== Staggered text（見出し） =====
+(function() {
+  var staggerTitles = document.querySelectorAll('.stagger-title');
+  if (!staggerTitles.length) return;
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('stagger-visible');
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3 });
+  staggerTitles.forEach(function(el) { obs.observe(el); });
+
+  // history-label blur fade
+  var historyLabels = document.querySelectorAll('.history-label');
+  var labelObs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.style.animation = 'blurFadeIn 1.8s cubic-bezier(0.22,1,0.36,1) forwards';
+        labelObs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3 });
+  historyLabels.forEach(function(el) { labelObs.observe(el); });
+
+  // closure-notice blur fade
+  var notices = document.querySelectorAll('.closure-notice');
+  var noticeObs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '0';
+        entry.target.style.filter = 'blur(10px)';
+        entry.target.style.animation = 'blurFadeIn 2.0s cubic-bezier(0.22,1,0.36,1) forwards 0.1s';
+        noticeObs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
+  notices.forEach(function(el) { noticeObs.observe(el); });
+})();
+
+// ===== historyセクション タイムライン演出（案4）=====
+(function() {
+  var timeline = document.getElementById('history-timeline');
+  var closing  = document.getElementById('history-closing');
+  if (!timeline) return;
+
+  var items = timeline.querySelectorAll('.history-tl-item');
+  var started = false;
+
+  var tlObs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting && !started) {
+        started = true;
+        tlObs.disconnect();
+
+        // 縦ラインを伸ばす
+        timeline.classList.add('tl-line-on');
+
+        // パターンC: 奈良時代 2000ms後 / 2025年 5500ms後
+        var delays = [2000, 5500];
+        items.forEach(function(item, i) {
+          setTimeout(function() {
+            item.classList.add('tl-in');
+          }, delays[i] || (2000 + i * 3500));
+        });
+
+        // 締めの言葉: 9500ms後
+        setTimeout(function() {
+          if (closing) closing.classList.add('tl-in');
+        }, 9500);
+      }
+    });
+  }, { threshold: 0.15 });
+
+  tlObs.observe(timeline);
+})();
+
+// ===== スライドイン（説明文）＋料金フェードイン =====
+(function() {
+  var items = document.querySelectorAll('.kf-item');
+  if (!items.length) return;
+
+  function doFade() {
+    var price = document.getElementById('price-fadein');
+    var tel   = document.getElementById('tel-fadein');
+    if (price) price.classList.add('fade-visible');
+    if (tel) setTimeout(function() { tel.classList.add('fade-visible'); }, 900);
+  }
+
+  var obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        var idx = Array.from(items).indexOf(entry.target);
+        var delay = 500 + idx * 1400;
+        setTimeout(function() {
+          entry.target.classList.add('kf-visible');
+          // 4番目（idx=3）のスライドイン完了後に料金フェードイン
+          if (idx === 3) {
+            setTimeout(doFade, 800);
+          }
+        }, delay);
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
+  items.forEach(function(item) { obs.observe(item); });
+})();
+
+// ===== タイプアニメーション（フェードインと切り離し） =====
+(function() {
+  var el = document.getElementById('kurotsu-typed');
+  if (!el) return;
+
+  var strings     = ["ガレージゴルフ黒鶴", "GARAGE GOLF KUROTSURU", "インドアゴルフ 営業中！"];
+  var strIndex    = 0;
+  var charIndex   = 0;
+  var isDeleting  = false;
+  var typeSpeed   = 120;
+  var deleteSpeed = 60;
+  var pauseType   = 2200;
+  var pauseDel    = 400;
+
+  function tick() {
+    var cur = strings[strIndex];
+    if (isDeleting) {
+      charIndex--;
+      el.textContent = cur.substring(0, charIndex);
+      if (charIndex === 0) {
+        isDeleting = false;
+        strIndex = (strIndex + 1) % strings.length;
+        setTimeout(tick, pauseDel);
+      } else {
+        setTimeout(tick, deleteSpeed);
+      }
+    } else {
+      charIndex++;
+      el.textContent = cur.substring(0, charIndex);
+      if (charIndex === cur.length) {
+        isDeleting = true;
+        setTimeout(tick, pauseType);
+      } else {
+        setTimeout(tick, typeSpeed);
+      }
+    }
+  }
+
+  var started = false;
+  var obs = new IntersectionObserver(function(entries) {
+    if (entries[0].isIntersecting && !started) {
+      started = true;
+      obs.disconnect();
+      setTimeout(tick, 800);
+    }
+  }, { threshold: 0.3 });
+  obs.observe(el);
+})();
+
+// ===== ハンバーガーメニュー =====
+(function() {
+  var btn     = document.getElementById('hamBtn');
+  var drawer  = document.getElementById('drawer');
+  var overlay = document.getElementById('drawerOverlay');
+  if (!btn) return;
+
+  function openDrawer() {
+    drawer.classList.add('open');
+    overlay.classList.add('open');
+    btn.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeDrawer() {
+    drawer.classList.remove('open');
+    overlay.classList.remove('open');
+    btn.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  window.closeDrawer = closeDrawer;
+  btn.addEventListener('click', function() {
+    drawer.classList.contains('open') ? closeDrawer() : openDrawer();
+  });
+  // ESCキーで閉じる
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeDrawer();
+  });
+})();
+</script>
+</body>
+</html>
