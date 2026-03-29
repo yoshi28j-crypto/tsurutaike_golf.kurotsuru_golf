@@ -485,16 +485,29 @@ footer .copy {
   /* ヘッダーにボタンを収める */
   header {
     justify-content: space-between;
-    padding: 8px 10px;
-    overflow: hidden;
+    padding: 8px 10px 8px 6px;
+    overflow: visible;
   }
   .header-inner {
     justify-content: flex-start;
     flex: 1;
     min-width: 0;
-    max-width: calc(100% - 46px);
-    overflow: hidden;
+    overflow: visible;
   }
+  .header-block {
+    gap: 6px;
+    padding: 0 6px;
+    flex-shrink: 1;
+    min-width: 0;
+  }
+  .header-block:first-child { padding-left: 0; }
+  .header-block:last-child  { padding-right: 0; }
+  .header-logo-text .ja,
+  .header-kurotsu-text .ja {
+    font-size: 0.82rem;
+    white-space: nowrap;
+  }
+  .header-divider { margin: 0 2px; }
 
   /* オーバーレイ */
   .drawer-overlay {
